@@ -1,0 +1,36 @@
+name: Deploy Node Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t arnabdutta04/nobbo-node-app-2026:latest .
+
+      - name: Publish Image to Docker Hub
+        run: docker push arnabdutta04/nobbo-node-app-2026:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from Docker Hub
+        run: docker pull arnabdutta04/nobbo-node-app-2026:latest
+
+      - name: Delete existing container
+        run: docker rm -f nobbo-node-app-container || true
+
+      - name: Run new container
+        run: |
+          docker run -d -p 3000:3000 --name nobbo-node-app-container -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} -e RAZORPAY_PUBLIC_KEY=${{ secrets.RAZORPAY_PUBLIC_KEY }} -e RAZORPAY_PRIVATE_KEY=${{ secrets.RAZORPAY_PRIVATE_KEY }} -e SECRECT_KEY=${{ secrets.SECRECT_KEY }} -e SENDGRID_KEY=${{ secrets.SENDGRID_KEY }} -e PORT=${{ secrets.PORT }} arnabdutta04/nobbo-node-app-2026:latest
