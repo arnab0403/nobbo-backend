@@ -21,12 +21,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      "https://nobbo.vercel.app",
-      "http://localhost:3000",
-      "https://nobbo-git-preview-arnabs-projects-2b7ab292.vercel.app",
-      "https://console.cron-job.org",
-    ],
     credentials: true,
   }),
 );
