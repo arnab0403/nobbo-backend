@@ -23,14 +23,24 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-      - name: Pull image from Docker Hub
-        run: docker pull arnabdutta04/nobbo-node-app-2026:latest
-
-      - name: Delete existing container
-        run: docker rm -f nobbo-node-app-container || true
-
-      - name: Run new container
-        run: |
-          docker run -d -p 3000:3000 --name nobbo-node-app-container -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} -e RAZORPAY_PUBLIC_KEY=${{ secrets.RAZORPAY_PUBLIC_KEY }} -e RAZORPAY_PRIVATE_KEY=${{ secrets.RAZORPAY_PRIVATE_KEY }} -e SECRECT_KEY=${{ secrets.SECRECT_KEY }} -e SENDGRID_KEY=${{ secrets.SENDGRID_KEY }} -e PORT=${{ secrets.PORT }} arnabdutta04/nobbo-node-app-2026:latest
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            docker pull arnabdutta04/nobbo-node-app-2026:latest
+            docker rm -f nobbo-node-app-container || true
+            docker run -d -p 3000:3000 \
+              --name nobbo-node-app-container \
+              -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+              -e DB_USERNAME=${{ secrets.DB_USERNAME }} \
+              -e RAZORPAY_PUBLIC_KEY=${{ secrets.RAZORPAY_PUBLIC_KEY }} \
+              -e RAZORPAY_PRIVATE_KEY=${{ secrets.RAZORPAY_PRIVATE_KEY }} \
+              -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
+              -e SENDGRID_KEY=${{ secrets.SENDGRID_KEY }} \
+              -e PORT=${{ secrets.PORT }} \
+              arnabdutta04/nobbo-node-app-2026:latest
