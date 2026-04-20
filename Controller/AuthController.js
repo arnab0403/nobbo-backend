@@ -5,9 +5,9 @@ const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 const { sendMail } = require("../utility/mail/mail");
 
-const SECRECT_KEY = process.env.SECRECT_KEY;
+const SECRET_KEY = process.env.SECRET_KEY;
 
-console.log("Secret Key: ", SECRECT_KEY);
+console.log("Secret Key: ", SECRET_KEY);
 
 /**
  * Sign up controller
