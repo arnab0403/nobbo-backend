@@ -7,6 +7,8 @@ const { sendMail } = require("../utility/mail/mail");
 
 const SECRECT_KEY = process.env.SECRECT_KEY;
 
+console.log("Secret Key: ", SECRECT_KEY);
+
 /**
  * Sign up controller
  */
