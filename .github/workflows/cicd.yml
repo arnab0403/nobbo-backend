@@ -40,7 +40,7 @@ jobs:
               -e DB_USERNAME=${{ secrets.DB_USERNAME }} \
               -e RAZORPAY_PUBLIC_KEY=${{ secrets.RAZORPAY_PUBLIC_KEY }} \
               -e RAZORPAY_PRIVATE_KEY=${{ secrets.RAZORPAY_PRIVATE_KEY }} \
-              -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
+              -e SECRET_KEY=${{ secrets.SECRECT_KEY }} \
               -e SENDGRID_KEY=${{ secrets.SENDGRID_KEY }} \
               -e PORT=${{ secrets.PORT }} \
               arnabdutta04/nobbo-node-app-2026:latest
