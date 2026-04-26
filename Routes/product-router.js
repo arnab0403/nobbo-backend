@@ -9,11 +9,12 @@ const {
   getCurrentProducts,
   getOversizedTshirts,
   getProductsByName,
-} = require("../Controller/ProductController");
+} = require("../Controller/product-controller");
+const { adminAuthMiddleware } = require("../Controller/admin-controller");
 
 const productRouter = express.Router();
 
-productRouter.post("/add", addProduct);
+productRouter.post("/add", adminAuthMiddleware, addProduct);
 productRouter.get("/hoodies", getHoodies);
 productRouter.get("/hoodies/:id", getHoodiesByID);
 productRouter.get("/punjabi", getDesignedPunjabis);

@@ -2,18 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const databaseConnect = require("./utility/db_connection");
-const authRouter = require("./Routes/AuthRouter");
+const authRouter = require("./Routes/auth-router");
 const cookieParser = require("cookie-parser");
-const userRouter = require("./Routes/UserRouter");
-const productRouter = require("./Routes/ProductRouter");
+const userRouter = require("./Routes/user-router");
+const productRouter = require("./Routes/product-router");
 const cors = require("cors");
-const paymentRouter = require("./Routes/routes-payments");
-const adminRouter = require("./Routes/routes-admin");
+const paymentRouter = require("./Routes/payment-router");
+const adminRouter = require("./Routes/admin-router");
 const PORT = process.env.PORT;
-const dns = require("dns");
-
-dns.resolveSrv("_mongodb._tcp.nobbo.zxpjwvt.mongodb.net", console.log);
-console.log(dns.getServers());
 
 databaseConnect();
 
@@ -21,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://nobbo.in",
+    origin: ["https://nobbo.in", "http://localhost:3000"],
     credentials: true,
   }),
 );

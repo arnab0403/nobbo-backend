@@ -2,8 +2,8 @@ const dotenv = require("dotenv");
 // Razorpay Dependencies
 const Razorpay = require("razorpay");
 const ShortId = require("short-unique-id");
-const UserModel = require("../Model/UserModel");
-const OrderModel = require("../Model/OrderModel");
+const UserModel = require("../Model/user-model");
+const OrderModel = require("../Model/order-model");
 const { sendMail } = require("../utility/mail/mail");
 
 dotenv.config();

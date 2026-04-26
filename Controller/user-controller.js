@@ -1,6 +1,6 @@
-const UserModel = require("../Model/UserModel");
+const UserModel = require("../Model/user-model");
 const ShortId = require("short-unique-id");
-const OrderModel = require("../Model/OrderModel");
+const OrderModel = require("../Model/order-model");
 const { sendMail } = require("../utility/mail/mail");
 
 const getUserDetails = async (req, res) => {

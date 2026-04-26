@@ -1,12 +1,11 @@
 require("dotenv").config();
-const UserModel = require("../Model/UserModel");
+const UserModel = require("../Model/user-model");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 const { sendMail } = require("../utility/mail/mail");
 
 const SECRECT_KEY = process.env.SECRECT_KEY;
-
 
 /**
  * Sign up controller
