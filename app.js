@@ -30,10 +30,6 @@ app.use("/api/product/", productRouter);
 app.use("/api/payment/", paymentRouter);
 app.use("/api/admin/", adminRouter);
 
-app.get("/", (req, res) => {
-  res.send("Server started");
-});
-
 app.listen(PORT, () => {
   console.log("Server started at PORT: ", PORT);
 });
