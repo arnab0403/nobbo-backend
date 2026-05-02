@@ -9,5 +9,5 @@ async function createPasswordHash(password){
 
 const value = createPasswordHash("jdjdd");
 
-console.log()
+console.log('')
 
