@@ -358,6 +358,16 @@ const authMiddleware = async (req, res, next) => {
     });
   }
 };
+
+const googleLogin = async (req, res) => {
+  try {
+    const { email, name } = req.body;
+  } catch (error) {
+    console.error("Error in Google Login", error);
+    res.status(500).json({});
+  }
+};
+
 module.exports = {
   signup,
   login,

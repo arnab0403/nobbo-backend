@@ -13,7 +13,10 @@ const user = {
   },
   password: {
     type: String,
-    required: true,
+  },
+  googleId: {
+    type: String,
+    sparse: true,
   },
   phone: {
     type: String,
@@ -45,6 +48,11 @@ const user = {
   },
   orders: [],
   cart: [],
+  authProvider: {
+    type: String,
+    enum: ["nobbo", "google"],
+    default: "nobbo",
+  },
   otp: {
     code: String,
     expiresAt: Date,
