@@ -9,6 +9,9 @@ const getUserDetails = async (req, res) => {
 
     const user = await UserModel.findById(userId);
 
+    user.lastActive = new Date();
+    await user.save();
+
     user.password = undefined;
     user.createdAt = undefined;
     user.updatedAt = undefined;

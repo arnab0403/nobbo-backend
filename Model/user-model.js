@@ -58,6 +58,9 @@ const user = {
     expiresAt: Date,
     verified: Boolean,
   },
+  lastActive: {
+    type: Date,
+  },
 };
 
 const userSchema = new mongoose.Schema(user, { timestamps: true });

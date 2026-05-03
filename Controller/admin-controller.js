@@ -193,10 +193,30 @@ const adminLogout = (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await UserModel.find({ role: "user" }).select(
+      "-password -createdAt -updatedAt"
+    );
+
+    res.status(200).json({
+      status: "success",
+      message: "All users fetched",
+      users: users,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "failed",
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllOrders,
   updateOrder,
   adminLogout,
+  getAllUsers,
   adminLogin,
   adminAuthMiddleware,
 };
