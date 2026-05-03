@@ -60,6 +60,7 @@ const user = {
   },
   lastActive: {
     type: Date,
+    default: Date.now,
   },
 };
 
