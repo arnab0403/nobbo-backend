@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://nobbo.in", "http://localhost:3000"],
+    origin: ["https://www.nobbo.in", "http://localhost:3000"],
     credentials: true,
   }),
 );
