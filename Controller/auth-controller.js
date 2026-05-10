@@ -10,7 +10,6 @@ const SECRECT_KEY = process.env.SECRECT_KEY;
 /**
  * Sign up controller
  */
-
 const signup = async (req, res) => {
   try {
     const user = req.body;
