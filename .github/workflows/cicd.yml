@@ -47,4 +47,5 @@ jobs:
               -e GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} \
               -e GOOGLE_CALLBACK_URL=${{ secrets.GOOGLE_CALLBACK_URL }} \
               -e FRONTEND_URL=${{ secrets.FRONTEND_URL }} \
+              -e RESEND_KEY=${{ secrets.RESEND_KEY }} \
               arnabdutta04/nobbo-node-app-2026:latest
