@@ -147,7 +147,7 @@ const calculateOrderSummary = async (req, res) => {
     const shippingCharges = 0;
 
     let totalAmount = amount;
-    if (amount < 1000) {
+    if (amount < 0) {
       totalAmount = amount + 100;
     }
     const data = {
